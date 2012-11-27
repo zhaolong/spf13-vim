@@ -181,6 +181,7 @@
         if count(g:spf13_bundle_groups, 'cpp')
             Bundle 'a.vim'
             Bundle 'zhaolong/vim-cpp-syntax'
+            Bundle 'zhaolong/cscope.vim'
         endif
 
     endif
