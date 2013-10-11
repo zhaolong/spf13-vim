@@ -30,11 +30,9 @@
         Bundle 'tpope/vim-surround'
         Bundle 'kien/ctrlp.vim'
         Bundle 'vim-scripts/sessionman.vim'
-        Bundle 'Townk/vim-autoclose'
         Bundle 'matchit.zip'
         Bundle 'Lokaltog/vim-powerline'
         Bundle 'Lokaltog/vim-easymotion'
-        Bundle 'godlygeek/csapprox'
         Bundle 'jistr/vim-nerdtree-tabs'
     " }
 
