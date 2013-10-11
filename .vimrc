@@ -57,7 +57,9 @@
         let g:solarized_visibility="high"
 
     " Show the line number relative to the line
-    autocmd BufEnter * set relativenumber
+    if exists("&relativenumber")
+        autocmd BufEnter * set relativenumber
+    endif
 
     set tabpagemax=15               " only show 15 tabs
     set showmode                    " display the current mode
