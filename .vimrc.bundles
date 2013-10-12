@@ -43,11 +43,8 @@
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
-    " }
 
-    " Snippets & AutoComplete {
-        Bundle 'Shougo/neocomplcache'
-        Bundle 'Shougo/neosnippet'
+        Bundle 'tagbar-phpctags'
     " }
 " }
 
