@@ -32,8 +32,6 @@
     set background=dark         " Assume a dark background
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " syntax highlighting
-    set mouse=a                 " automatically enable mouse usage
-    set mousehide               " hide the mouse cursor while typing
     scriptencoding utf-8
 
     " always switch to the current file directory.
@@ -75,14 +73,6 @@
 
     if has('statusline')
         set laststatus=2
-
-        " Broken down into easily includeable segments
-        set statusline=%<%f\    " Filename
-        set statusline+=%w%h%m%r " Options
-        set statusline+=%{fugitive#statusline()} "  Git Hotness
-        set statusline+=\ [%{&ff}/%Y]            " filetype
-        set statusline+=\ [%{getcwd()}]          " current dir
-        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
     endif
 
     set backspace=indent,eol,start  " backspace for dummies
@@ -232,12 +222,6 @@
 
     " Ctags {
         set tags=./tags;/,~/.vimtags
-    " }
-
-    " AutoCloseTag {
-        " Make it so AutoCloseTag works for xml and xhtml files as well
-        au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-        nmap <Leader>ac <Plug>ToggleAutoCloseMappings
     " }
 
     " NerdTree {
