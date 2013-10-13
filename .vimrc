@@ -60,14 +60,10 @@
     endif
 
     set tabpagemax=15               " only show 15 tabs
-    set showmode                    " display the current mode
-
-    set cursorline                  " highlight current line
 
     if has('statusline')
         set laststatus=2
-                      
-        set statusline=%=[%(%l,%c%V%)/%p%%]\    " file nav info
+        set statusline=%=[%(%l/%p%%%),\ %c]\    " file nav info
         set statusline+=\ [%f]\                 " file name
     endif
 
@@ -253,15 +249,6 @@
         nmap <leader>sl :SessionList<CR>
         nmap <leader>ss :SessionSave<CR>
      " }
-
-     " ctrlp {
-        let g:ctrlp_working_path_mode = 2
-        nnoremap <silent> <D-t> :CtrlP<CR>
-        nnoremap <silent> <D-r> :CtrlPMRU<CR>
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
-     "}
 
      " TagBar {
         nnoremap <silent> <leader>tt :TagbarToggle<CR>

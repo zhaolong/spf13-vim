@@ -28,7 +28,6 @@
         Bundle 'scrooloose/nerdtree'
         Bundle 'zhaolong/vim-colors-solarized'
         Bundle 'tpope/vim-surround'
-        Bundle 'kien/ctrlp.vim'
         Bundle 'vim-scripts/sessionman.vim'
         Bundle 'matchit.zip'
         Bundle 'Lokaltog/vim-easymotion'
