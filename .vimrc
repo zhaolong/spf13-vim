@@ -61,6 +61,13 @@
 
     set tabpagemax=15               " only show 15 tabs
 
+    if has('cmdline_info')
+        set ruler                   " show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+        set showcmd                 " show partial commands in status line and
+                                    " selected characters/lines in visual mode
+    endif
+
     if has('statusline')
         set laststatus=2
         set statusline=%=[%(%l/%p%%%),\ %c]\    " file nav info
