@@ -30,6 +30,7 @@
         Bundle 'tpope/vim-surround'
         Bundle 'vim-scripts/sessionman.vim'
         Bundle 'matchit.zip'
+        Bundle 'bufexplorer.zip'
         Bundle 'Lokaltog/vim-easymotion'
         Bundle 'jistr/vim-nerdtree-tabs'
     " }

@@ -70,8 +70,10 @@
 
     if has('statusline')
         set laststatus=2
-        set statusline=%=[%(%l/%p%%%),\ %c]\    " file nav info
-        set statusline+=\ [%f]\                 " file name
+        set statusline=%F%m%r%h%w
+        set statusline+=%=[%l,%p%%][%{&ff}]%y
+        " set statusline=%=[%(%l/%p%%%),\ %c]\    " file nav info
+        " set statusline+=\ [%f]\                 " file name
     endif
 
     set backspace=indent,eol,start  " backspace for dummies
@@ -190,33 +192,7 @@
 " Plugins {
 
     " Misc {
-        let g:NERDShutUp=1
         let b:match_ignorecase = 1
-    " }
-
-    " OmniComplete {
-        if has("autocmd") && exists("+omnifunc")
-            autocmd Filetype *
-                \if &omnifunc == "" |
-                \setlocal omnifunc=syntaxcomplete#Complete |
-                \endif
-        endif
-
-        hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-        hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-        hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-        " some convenient mappings
-        inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-        inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-        inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-        inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-        inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-        inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-        " automatically open and close the popup menu / preview window
-        au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-        set completeopt=menu,preview,longest
     " }
 
     " Ctags {
@@ -231,10 +207,10 @@
         let NERDTreeShowBookmarks=1
         let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
         let NERDTreeChDirMode=0
-        let NERDTreeQuitOnOpen=1
+        let NERDTreeQuitOnOpen=0
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
-        let NERDTreeKeepTreeInNewTab=1
+        let NERDTreeShowLineNumbers=1
         let g:nerdtree_tabs_open_on_gui_startup=0
     " }
 
