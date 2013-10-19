@@ -71,9 +71,7 @@
     if has('statusline')
         set laststatus=2
         set statusline=%F%m%r%h%w
-        set statusline+=%=[%l,%p%%][%{&ff}]%y
-        " set statusline=%=[%(%l/%p%%%),\ %c]\    " file nav info
-        " set statusline+=\ [%f]\                 " file name
+        set statusline+=%=[%l,%L][%p%%][%{&ff}]%y
     endif
 
     set backspace=indent,eol,start  " backspace for dummies
