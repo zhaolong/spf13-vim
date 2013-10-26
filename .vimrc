@@ -84,6 +84,7 @@
     set ignorecase                  " case insensitive search
     set smartcase                   " case sensitive when uc present
     set wildmenu                    " show list instead of just completing
+    set wildmode=longest:full       " Complete till longest common string
     set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
     set foldenable                  " auto fold code
 " }
