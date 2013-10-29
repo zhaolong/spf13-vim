@@ -1,5 +1,6 @@
 " Environment {
     " Basics {
+        set noesckeys           " avoid delay of shift+o
         set nocompatible        " must be first line
         if has ("unix") && "Darwin" != system("echo -n \"$(uname)\"")
           " on Linux use + register for copy-paste
