@@ -50,11 +50,11 @@
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
         let g:solarized_termcolors=256
         let g:solarized_italic=0
+        let g:solarized_termtrans=0
+        " let g:solarized_contrast="high"
+        " let g:solarized_visibility="high"
         color solarized                 " load a colorscheme
     endif
-        let g:solarized_termtrans=1
-        let g:solarized_contrast="high"
-        let g:solarized_visibility="high"
 
     " Show the line number relative to the line
     if exists("&relativenumber")
