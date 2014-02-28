@@ -27,6 +27,7 @@
     " General {
         Bundle 'scrooloose/nerdtree'
         Bundle 'zhaolong/vim-colors-solarized'
+        Bundle 'zhaolong/molokai'
         Bundle 'tpope/vim-surround'
         Bundle 'vim-scripts/sessionman.vim'
         Bundle 'matchit.zip'
