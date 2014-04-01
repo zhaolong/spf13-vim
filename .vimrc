@@ -1,3 +1,15 @@
+" Identify platform {
+    silent function! OSX()
+        return has('macunix')
+    endfunction
+    silent function! LINUX()
+        return has('unix') && !has('macunix') && !has('win32unix')
+    endfunction
+    silent function! WINDOWS()
+        return  (has('win16') || has('win32') || has('win64'))
+    endfunction
+" }
+
 " Environment {
     " Basics {
         set noesckeys           " avoid delay of shift+o
@@ -49,13 +61,17 @@
 
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
         let g:solarized_termcolors=256
+        let g:solarized_termtrans=1
+        let g:solarized_underline=0
+        let g:solarized_bold=0
         let g:solarized_italic=0
         color solarized                 " load a colorscheme
+
+        " Custom settings
+        exe "hi! VertSplit ctermbg=235"
+        exe "hi! Visual cterm=bold,reverse ctermfg=23 ctermbg=254"
+        set fillchars=vert:\|,stl:\ ,stlnc:\ 
     endif
-        let g:solarized_termtrans=1
-        let g:solarized_contrast="high"
-        let g:solarized_visibility="high"
-    " color molokai
 
     " Show the line number relative to the line
     if exists("&relativenumber")
@@ -82,14 +98,16 @@
     set nu                          " Line numbers on
     set showmatch                   " show matching brackets/parenthesis
     set incsearch                   " find as you type search
-    set hlsearch                    " highlight search terms
+    " set hlsearch                    " highlight search terms
     set winminheight=0              " windows can be 0 line high
     set ignorecase                  " case insensitive search
     set smartcase                   " case sensitive when uc present
     set wildmenu                    " show list instead of just completing
     set wildmode=longest:full       " Complete till longest common string
     set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
-    set foldenable                  " auto fold code
+    set nofoldenable                " auto fold code
+    set foldmethod=indent
+    set foldlevel=99
 " }
 
 " Formatting {
@@ -99,7 +117,7 @@
     set expandtab                   " tabs are spaces, not tabs
     set tabstop=4                   " an indentation every four columns
     set softtabstop=4               " let backspace delete indent
-    set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+    set pastetoggle=<F2>            " pastetoggle (sane indentation on pastes)
 " }
 
 " Key (re)Mappings {
@@ -112,26 +130,15 @@
     map <C-L> <C-W>l<C-W>_
     map <C-H> <C-W>h<C-W>_
 
+    " Fast tab
+    map <C-J> gT
+    map <C-K> gt
+
     " Wrapped lines goes down/up to next row, rather than next line in file.
     nnoremap j gj
     nnoremap k gk
 
-    " Stupid shift key fixes
-    if !exists('g:spf13_no_keyfixes')
-        if has("user_commands")
-            command! -bang -nargs=* -complete=file E e<bang> <args>
-            command! -bang -nargs=* -complete=file W w<bang> <args>
-            command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-            command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-            command! -bang Wa wa<bang>
-            command! -bang WA wa<bang>
-            command! -bang Q q<bang>
-            command! -bang QA qa<bang>
-            command! -bang Qa qa<bang>
-        endif
-
-        cmap Tabe tabe
-    endif
+    command! -nargs=* -complete=file E tabe <args>                                                                                                                                       
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
     nnoremap Y y$
@@ -188,6 +195,13 @@
     " Easier horizontal scrolling
     map zl zL
     map zh zH
+
+    " nmap <silent> <leader>/ :nohlsearch<CR>
+    nmap <silent> <leader>/ :set invhlsearch<CR>
+
+    " Scrolling in vim autocomplete box with jk movement keys
+    inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-j>"))
+    inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-k>"))
 " }
 
 " Plugins {
@@ -236,7 +250,109 @@
 
      " TagBar {
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
+        exec "hi! TagbarHighlight ctermbg=235"
+        let g:tagbar_autofocus=1
+        let g:tagbar_show_linenumbers=1
+        let g:tagbar_iconchars=['+', '-']
+        let g:tagbar_autoclose=1
+        let g:tagbar_type_php = {
+            \ 'ctagstype' : 'php',
+            \ 'kinds'     : [
+                \ 'i:interfaces',
+                \ 'c:classes',
+                \ 'd:constant definitions',
+                \ 'f:functions',
+                \ 'j:javascript functions:1'
+            \ ]
+        \ }
      "}
+
+     " BufExplorer {
+        let g:bufExplorerSortBy='fullpath'
+        let g:bufExplorerShowRelativePath=0
+     " }
+
+     " Fuzzyfinder {
+        noremap <silent> <C-\> :FufTagWithCursorWord!<CR>
+
+        nnoremap <silent> <leader>fb :FufBuffer<CR>
+        nnoremap <silent> <leader>ft :FufTag<CR>
+        nnoremap <silent> <leader>f, :FufBufferTag<CR>
+        nnoremap <silent> <leader>f. :FufBufferTagAll<CR>
+
+        let g:fuf_keyOpenSplit=''
+        let g:fuf_keyOpenVsplit=''
+        let g:fuf_keyNextMode='<C-n>'
+        let g:fuf_keyPrevMode='<C-p'
+
+        " No php variable
+        let g:fuf_buffertag__php='--language-force=php --php-types=cdf'
+     " }
+     
+     " Ctrlp {
+        let g:ctrlp_working_path_mode='ra'
+        let g:ctrlp_root_markers = ['.ctrlp']
+        let g:ctrlp_max_files=0
+        let g:ctrlp_lazy_update=1
+        let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+        let g:ctrlp_extensions = ['funky']
+        nnoremap <Leader>fu :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+        " On Windows use "dir" as fallback command.
+        if WINDOWS()
+            let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+        elseif executable('ag')
+            let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+        elseif executable('ack')
+            let s:ctrlp_fallback = 'ack %s --nocolor -f'
+        else
+            let s:ctrlp_fallback = 'find %s -type f'
+        endif
+        let g:ctrlp_user_command = {
+            \ 'types': {
+                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+            \ 'fallback': s:ctrlp_fallback
+        \ }
+
+        let g:ctrlp_prompt_mappings = {
+            \ 'AcceptSelection("t")': ['<c-t>'],
+        \ }
+     "
+     
+     " Airline {
+        let g:airline_theme = 'luna'
+
+        let g:airline_left_sep = ''
+        let g:airline_right_sep = ''
+
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#tab_nr_type = 1
+        let g:airline#extensions#tabline#left_sep = ''
+        let g:airline#extensions#tabline#left_alt_sep = ''
+        let g:airline#extensions#tabline#fnamemod = ':t'
+        let g:airline#extensions#tabline#show_buffers = 0
+
+        let g:airline_section_c = '%F%m'
+        let g:airline_section_warning = ''
+        let g:airline_section_z = '%p%% %l:%L'
+
+        let g:airline_detect_modified = 0
+
+        let g:airline_theme_patch_func = 'AirlineThemePatch'
+        function! AirlineThemePatch(palette)
+            if g:airline_theme == 'luna'
+                let color = a:palette.tabline['airline_tab']
+                let color[2] = 251
+            endif
+        endfunction
+     " }
 " }
 
 " GUI Settings {
@@ -246,9 +362,9 @@
         set guioptions-=r           " remove the scroll bar
         set lines=40                " 40 lines of text instead of 24,
         if has("gui_gtk2")
-            set guifont=Courier\ New:13
+            set guifont=Menlo:12
         else
-            set guifont=Courier\ New:h13
+            set guifont=Menlo:h12
         endif
         if has('gui_macvim')
             set transparency=5          " Make the window slightly transparent
@@ -256,6 +372,12 @@
     else
         if &term == 'xterm' || &term == 'screen'
             set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+        endif
+        if &term =~ '256color'
+          " disable Background Color Erase (BCE) so that color schemes
+          " render properly when inside 256-color tmux and GNU screen.
+          " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+          set t_ut=
         endif
     endif
 

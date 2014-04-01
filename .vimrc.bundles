@@ -26,10 +26,16 @@
 
     " General {
         Bundle 'scrooloose/nerdtree'
-        Bundle 'zhaolong/vim-colors-solarized'
-        Bundle 'zhaolong/molokai'
+        Bundle 'altercation/vim-colors-solarized'
+        Bundle 'Pychimp/vim-luna'
+        Bundle 'bling/vim-airline'
         Bundle 'tpope/vim-surround'
+        Bundle 'guns/xterm-color-table.vim'
         Bundle 'vim-scripts/sessionman.vim'
+        Bundle 'L9'
+        Bundle 'FuzzyFinder'
+        Bundle 'kien/ctrlp.vim'
+        Bundle 'tacahiroy/ctrlp-funky'
         Bundle 'matchit.zip'
         Bundle 'bufexplorer.zip'
         Bundle 'Lokaltog/vim-easymotion'
@@ -40,11 +46,12 @@
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'godlygeek/tabular'
         Bundle 'tpope/vim-fugitive'
+        Bundle 'Shougo/neocomplcache.vim'
+        Bundle 'Shougo/neosnippet'
+        Bundle 'Shougo/neosnippet-snippets'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
-
-        Bundle 'tagbar-phpctags'
     " }
 " }
 
