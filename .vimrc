@@ -58,18 +58,17 @@
 " }
 
 " Vim UI {
-
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        let g:solarized_termcolors=256
-        let g:solarized_termtrans=1
-        let g:solarized_underline=0
-        let g:solarized_bold=0
-        let g:solarized_italic=0
-        color solarized                 " load a colorscheme
+        let g:solarized_termcolors = 256
+        let g:solarized_termtrans = 1
+        let g:solarized_underline = 0
+        let g:solarized_bold = 0
+        let g:solarized_italic = 0
+        color solarized
 
         " Custom settings
-        exe "hi! VertSplit ctermbg=235"
-        exe "hi! Visual cterm=bold,reverse ctermfg=23 ctermbg=254"
+        exe "hi! VertSplit  ctermbg = 232"
+        exe "hi! LineNr     ctermbg = 232"
         set fillchars=vert:\|,stl:\ ,stlnc:\ 
     endif
 
@@ -327,7 +326,7 @@
      "
      
      " Airline {
-        let g:airline_theme = 'luna'
+        let g:airline_theme = 'sol'
 
         let g:airline_left_sep = ''
         let g:airline_right_sep = ''
@@ -362,9 +361,9 @@
         set guioptions-=r           " remove the scroll bar
         set lines=40                " 40 lines of text instead of 24,
         if has("gui_gtk2")
-            set guifont=Menlo:12
+            set guifont=Menlo:11
         else
-            set guifont=Menlo:h12
+            set guifont=Menlo:h11
         endif
         if has('gui_macvim')
             set transparency=5          " Make the window slightly transparent
