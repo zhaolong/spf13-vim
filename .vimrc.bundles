@@ -27,7 +27,6 @@
     " General {
         Bundle 'scrooloose/nerdtree'
         Bundle 'altercation/vim-colors-solarized'
-        Bundle 'Pychimp/vim-luna'
         Bundle 'bling/vim-airline'
         Bundle 'tpope/vim-surround'
         Bundle 'guns/xterm-color-table.vim'
