@@ -34,7 +34,6 @@
         Bundle 'L9'
         Bundle 'FuzzyFinder'
         Bundle 'kien/ctrlp.vim'
-        Bundle 'tacahiroy/ctrlp-funky'
         Bundle 'matchit.zip'
         Bundle 'bufexplorer.zip'
         Bundle 'Lokaltog/vim-easymotion'

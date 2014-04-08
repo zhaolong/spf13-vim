@@ -297,11 +297,6 @@
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-        let g:ctrlp_extensions = ['funky']
-        nnoremap <Leader>fu :CtrlPFunky<Cr>
-        " narrow the list down with a word under cursor
-        nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
         " On Windows use "dir" as fallback command.
         if WINDOWS()
             let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
