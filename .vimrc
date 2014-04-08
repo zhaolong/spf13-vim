@@ -249,7 +249,7 @@
 
      " TagBar {
         nnoremap <silent> <leader>tt :TagbarToggle<CR>
-        exec "hi! TagbarHighlight ctermbg=235"
+        exec "hi! TagbarHighlight ctermbg=232"
         let g:tagbar_autofocus=1
         let g:tagbar_show_linenumbers=1
         let g:tagbar_iconchars=['+', '-']
