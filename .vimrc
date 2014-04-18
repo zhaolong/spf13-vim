@@ -69,6 +69,11 @@
         " Custom settings
         exe "hi! VertSplit  ctermbg = 232"
         exe "hi! LineNr     ctermbg = 232"
+        exe "hi! Pmenu      ctermbg = 245   ctermfg = 232"
+        exe "hi! PmenuSel   ctermbg = 232   ctermfg = 250"
+        exe "hi! ErrorMsg   cterm = bold    ctermfg = 124"
+        exe "hi! Visual     cterm = bold,reverse ctermfg = 250 ctermbg = 232"
+
         set fillchars=vert:\|,stl:\ ,stlnc:\ 
     endif
 
@@ -199,8 +204,8 @@
     nmap <silent> <leader>/ :set invhlsearch<CR>
 
     " Scrolling in vim autocomplete box with jk movement keys
-    inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-j>"))
-    inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-k>"))
+    " inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-j>"))
+    " inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-k>"))
 " }
 
 " Plugins {
@@ -283,6 +288,7 @@
         let g:fuf_keyOpenVsplit=''
         let g:fuf_keyNextMode='<C-n>'
         let g:fuf_keyPrevMode='<C-p'
+        let g:fuf_enumeratingLimit=20
 
         " No php variable
         let g:fuf_buffertag__php='--language-force=php --php-types=cdf'
@@ -315,9 +321,10 @@
             \ 'fallback': s:ctrlp_fallback
         \ }
 
-        let g:ctrlp_prompt_mappings = {
-            \ 'AcceptSelection("t")': ['<c-t>'],
-        \ }
+        " let g:ctrlp_prompt_mappings = {
+        "     \ 'AcceptSelection("t")': ['<c-l>'],
+        "     \ 'PrtCurRight()':        ['<c-t>', '<right>'],
+        " \ }
      "
      
      " Airline {
@@ -346,6 +353,48 @@
                 let color[2] = 251
             endif
         endfunction
+     " }
+
+     " Neocomplcache {
+        " Disable AutoComplPop.
+        let g:acp_enableAtStartup = 0
+
+        " Set minimum syntax keyword length.
+        let g:neocomplcache_min_syntax_length = 3
+
+        let g:neocomplcache_enable_at_startup = 1
+        let g:neocomplcache_enable_auto_select = 0
+        let g:neocomplcache_max_list = 10
+
+        " Plugin key-mappings.
+        inoremap <expr><C-g>     neocomplcache#undo_completion()
+        inoremap <expr><C-l>     neocomplcache#complete_common_string()
+        " inoremap <expr><Space>   pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+     " }
+
+     " Neosnippet {
+        " Plugin key-mappings.
+        imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+        xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+        " SuperTab like snippets behavior.
+        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+        smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
+
+        " For snippet_complete marker.
+        if has('conceal')
+          set conceallevel=2 concealcursor=i
+        endif
+        " Enable snipMate compatibility feature.
+        let g:neosnippet#enable_snipmate_compatibility = 1
+
+        " Tell Neosnippet about the other snippets
+        let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
      " }
 " }
 
