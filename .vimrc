@@ -286,8 +286,6 @@
 
         let g:fuf_keyOpenSplit=''
         let g:fuf_keyOpenVsplit=''
-        let g:fuf_keyNextMode='<C-n>'
-        let g:fuf_keyPrevMode='<C-p'
         let g:fuf_enumeratingLimit=20
 
         " No php variable
@@ -356,45 +354,37 @@
      " }
 
      " Neocomplcache {
-        " Disable AutoComplPop.
-        let g:acp_enableAtStartup = 0
-
-        " Set minimum syntax keyword length.
-        let g:neocomplcache_min_syntax_length = 3
-
         let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_enable_auto_select = 0
         let g:neocomplcache_max_list = 10
 
         " Plugin key-mappings.
         inoremap <expr><C-g>     neocomplcache#undo_completion()
-        inoremap <expr><C-l>     neocomplcache#complete_common_string()
-        " inoremap <expr><Space>   pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+        inoremap <expr><Space>   pumvisible() ? neocomplcache#close_popup()."\<SPACE>" : "\<Space>"
+
+        " Recommended key-mappings.
+        " <CR>: close popup and save indent.
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        function! s:my_cr_function()
+            return neocomplcache#smart_close_popup() . "\<CR>"
+            " For no inserting <CR> key.
+            "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+        endfunction
      " }
 
      " Neosnippet {
+     
+        " Tell Neosnippet about the other snippets
+        let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
+
         " Plugin key-mappings.
         imap <C-k>     <Plug>(neosnippet_expand_or_jump)
         smap <C-k>     <Plug>(neosnippet_expand_or_jump)
         xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-        " SuperTab like snippets behavior.
-        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: pumvisible() ? "\<C-n>" : "\<TAB>"
-        smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-        \ "\<Plug>(neosnippet_expand_or_jump)"
-        \: "\<TAB>"
-
         " For snippet_complete marker.
         if has('conceal')
           set conceallevel=2 concealcursor=i
         endif
-        " Enable snipMate compatibility feature.
-        let g:neosnippet#enable_snipmate_compatibility = 1
-
-        " Tell Neosnippet about the other snippets
-        let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
      " }
 " }
 
