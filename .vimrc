@@ -48,7 +48,7 @@
     scriptencoding utf-8
 
     " always switch to the current file directory.
-    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    " autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
@@ -338,7 +338,7 @@
         let g:airline#extensions#tabline#fnamemod = ':t'
         let g:airline#extensions#tabline#show_buffers = 0
 
-        let g:airline_section_c = '%F%m'
+        let g:airline_section_c = '%f%m'
         let g:airline_section_warning = ''
         let g:airline_section_z = '%p%% %l:%L'
 
