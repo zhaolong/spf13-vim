@@ -222,7 +222,8 @@
     " }
 
     " NerdTree {
-        map <C-n> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+        map <C-n> :NERDTreeToggle<CR>
+        " map <C-n> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
         " map <leader>e :NERDTreeFind<CR>
         nmap <leader>nt :NERDTreeFind<CR>
 
