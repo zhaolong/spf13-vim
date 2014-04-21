@@ -206,6 +206,9 @@
     " Scrolling in vim autocomplete box with jk movement keys
     " inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-j>"))
     " inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-k>"))
+
+    " Line numbrer toggle
+    nnoremap <F3> :set nonumber! norelativenumber!<CR>
 " }
 
 " Plugins {
