@@ -357,6 +357,12 @@
         let g:neocomplcache_enable_at_startup = 1
         let g:neocomplcache_max_list = 10
 
+        " Define dictionary.
+        let g:neocomplcache_dictionary_filetype_lists = {
+        \   'default'   : '',
+        \   'php'       : '~/.vim/bundle/vim-dict/dict/php.dic'
+        \ }
+
         " Plugin key-mappings.
         inoremap <expr><C-g>     neocomplcache#undo_completion()
         inoremap <expr><Space>   pumvisible() ? neocomplcache#close_popup()."\<SPACE>" : "\<Space>"
