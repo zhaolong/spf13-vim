@@ -383,8 +383,13 @@
 
      " Neosnippet {
      
-        " Tell Neosnippet about the other snippets
+        " Tell Neosnippet about the other snippets.
         let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
+
+        " Do not load all runtime snippets.
+        let g:neosnippet#disable_runtime_snippets = {
+        \   '_' : 1,
+        \ }
 
         " Plugin key-mappings.
         imap <C-k>     <Plug>(neosnippet_expand_or_jump)
