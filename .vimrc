@@ -288,9 +288,12 @@
         nnoremap <silent> <leader>f, :FufBufferTag<CR>
         nnoremap <silent> <leader>f. :FufBufferTagAll<CR>
 
-        let g:fuf_keyOpenSplit=''
-        let g:fuf_keyOpenVsplit=''
-        let g:fuf_enumeratingLimit=20
+        let g:fuf_keyOpenSplit = ''
+        let g:fuf_keyOpenVsplit = ''
+        let g:fuf_enumeratingLimit = 20
+        if OSX()
+            let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
+        endif
 
         " No php variable
         let g:fuf_buffertag__php='--language-force=php --php-types=cdf'
