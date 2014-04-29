@@ -19,7 +19,7 @@
           set clipboard=unnamedplus
         else
           " one mac and windows, use * register for copy-paste
-          set clipboard=unnamed
+          " set clipboard=unnamed
         endif
     " }
 
