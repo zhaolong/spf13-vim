@@ -1,7 +1,7 @@
 zvimrc
 ======
 
-This is mine personal .vimrc file
+This is my personal .vimrc file
 
 # Installation 
 
