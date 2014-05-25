@@ -59,7 +59,7 @@
 
 " Vim UI {
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        let g:solarized_termcolors = 256
+        " let g:solarized_termcolors = 256
         let g:solarized_termtrans = 1
         let g:solarized_underline = 0
         let g:solarized_bold = 0
@@ -67,15 +67,15 @@
         color solarized
 
         " Custom settings
-        exe "hi! VertSplit  ctermbg = 232"
-        exe "hi! LineNr     ctermbg = 232"
-        exe "hi! Pmenu      ctermbg = 245   ctermfg = 232"
-        exe "hi! PmenuSel   ctermbg = 232   ctermfg = 250"
-        exe "hi! ErrorMsg   cterm = bold    ctermfg = 124"
-        exe "hi! Visual     cterm = bold,reverse ctermfg = 250 ctermbg = 232"
-
-        set fillchars=vert:\|,stl:\ ,stlnc:\ 
+        " exe "hi! VertSplit  ctermbg = 232"
+        " exe "hi! LineNr     ctermbg = 232"
+        " exe "hi! Pmenu      ctermbg = 245   ctermfg = 232"
+        " exe "hi! PmenuSel   ctermbg = 232   ctermfg = 250"
+        " exe "hi! ErrorMsg   cterm = bold    ctermfg = 124"
+        " exe "hi! Visual     cterm = bold,reverse ctermfg = 250 ctermbg = 232"
     endif
+
+    set fillchars=vert:\|,stl:\ ,stlnc:\ 
 
     " Show the line number relative to the line
     if exists("&relativenumber")
@@ -288,11 +288,11 @@
         nnoremap <silent> <leader>f, :FufBufferTag<CR>
         nnoremap <silent> <leader>f. :FufBufferTagAll<CR>
 
-        let g:fuf_keyOpenSplit = ''
-        let g:fuf_keyOpenVsplit = ''
-        let g:fuf_enumeratingLimit = 20
+        let g:fuf_keyOpenSplit=''
+        let g:fuf_keyOpenVsplit=''
+        let g:fuf_enumeratingLimit=20
         if OSX()
-            let g:fuf_buffertag_ctagsPath = '/usr/local/bin/ctags'
+            let g:fuf_buffertag_ctagsPath='/usr/local/bin/ctags'
         endif
 
         " No php variable
@@ -310,15 +310,15 @@
 
         " On Windows use "dir" as fallback command.
         if WINDOWS()
-            let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
+            let s:ctrlp_fallback='dir %s /-n /b /s /a-d'
         elseif executable('ag')
-            let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+            let s:ctrlp_fallback='ag %s --nocolor -l -g ""'
         elseif executable('ack')
-            let s:ctrlp_fallback = 'ack %s --nocolor -f'
+            let s:ctrlp_fallback='ack %s --nocolor -f'
         else
-            let s:ctrlp_fallback = 'find %s -type f'
+            let s:ctrlp_fallback='find %s -type f'
         endif
-        let g:ctrlp_user_command = {
+        let g:ctrlp_user_command={
             \ 'types': {
                 \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
@@ -333,29 +333,29 @@
      "
      
      " Airline {
-        let g:airline_theme = 'sol'
+        let g:airline_theme='solarized'
 
-        let g:airline_left_sep = ''
-        let g:airline_right_sep = ''
+        let g:airline_left_sep=''
+        let g:airline_right_sep=''
 
-        let g:airline#extensions#tabline#enabled = 1
-        let g:airline#extensions#tabline#tab_nr_type = 1
-        let g:airline#extensions#tabline#left_sep = ''
-        let g:airline#extensions#tabline#left_alt_sep = ''
-        let g:airline#extensions#tabline#fnamemod = ':t'
-        let g:airline#extensions#tabline#show_buffers = 0
+        let g:airline#extensions#tabline#enabled=1
+        let g:airline#extensions#tabline#tab_nr_type=1
+        let g:airline#extensions#tabline#left_sep=''
+        let g:airline#extensions#tabline#left_alt_sep=''
+        let g:airline#extensions#tabline#fnamemod=':t'
+        let g:airline#extensions#tabline#show_buffers=0
 
-        let g:airline_section_c = '%f%m'
-        let g:airline_section_warning = ''
-        let g:airline_section_z = '%p%% %l:%L'
+        let g:airline_section_c='%f%m'
+        let g:airline_section_warning=''
+        let g:airline_section_z='%p%% %l:%L'
 
-        let g:airline_detect_modified = 0
+        let g:airline_detect_modified=0
 
-        let g:airline_theme_patch_func = 'AirlineThemePatch'
+        let g:airline_theme_patch_func='AirlineThemePatch'
         function! AirlineThemePatch(palette)
-            if g:airline_theme == 'luna'
-                let color = a:palette.tabline['airline_tab']
-                let color[2] = 251
+            if g:airline_theme=='luna'
+                let color=a:palette.tabline['airline_tab']
+                let color[2]=251
             endif
         endfunction
      " }
