@@ -228,8 +228,9 @@
         nmap <leader>nt :NERDTreeFind<CR>
 
         let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.idea']
         let NERDTreeChDirMode=0
+        let NERDTreeDirArrows=1
         let NERDTreeQuitOnOpen=1
         let NERDTreeMouseMode=2
         let NERDTreeShowHidden=1
@@ -301,7 +302,7 @@
      
      " Ctrlp {
         let g:ctrlp_working_path_mode='ra'
-        let g:ctrlp_root_markers = ['.ctrlp']
+        let g:ctrlp_root_markers = ['.ctrlp', '.git']
         let g:ctrlp_max_files=0
         let g:ctrlp_lazy_update=1
         let g:ctrlp_custom_ignore = {

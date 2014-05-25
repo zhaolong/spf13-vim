@@ -47,7 +47,7 @@
         Bundle 'zhaolong/vim-dict'
         Bundle 'Shougo/neocomplcache.vim'
         Bundle 'Shougo/neosnippet'
-        Bundle 'zhaolong/vim-snippets'
+        Bundle 'https://zhaolong@bitbucket.org/zhaolong/vim-snippets.git'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
