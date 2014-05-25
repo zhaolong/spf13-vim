@@ -47,9 +47,6 @@
     syntax on                   " syntax highlighting
     scriptencoding utf-8
 
-    " always switch to the current file directory.
-    " autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-
     set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
     set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
     set virtualedit=onemore         " allow for cursor beyond last character
@@ -59,23 +56,12 @@
 
 " Vim UI {
     if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-        " let g:solarized_termcolors = 256
         let g:solarized_termtrans = 1
         let g:solarized_underline = 0
         let g:solarized_bold = 0
         let g:solarized_italic = 0
         color solarized
-
-        " Custom settings
-        " exe "hi! VertSplit  ctermbg = 232"
-        " exe "hi! LineNr     ctermbg = 232"
-        " exe "hi! Pmenu      ctermbg = 245   ctermfg = 232"
-        " exe "hi! PmenuSel   ctermbg = 232   ctermfg = 250"
-        " exe "hi! ErrorMsg   cterm = bold    ctermfg = 124"
-        " exe "hi! Visual     cterm = bold,reverse ctermfg = 250 ctermbg = 232"
     endif
-
-    set fillchars=vert:\|,stl:\ ,stlnc:\ 
 
     " Show the line number relative to the line
     if exists("&relativenumber")
@@ -203,10 +189,6 @@
     " nmap <silent> <leader>/ :nohlsearch<CR>
     nmap <silent> <leader>/ :set invhlsearch<CR>
 
-    " Scrolling in vim autocomplete box with jk movement keys
-    " inoremap <expr> <C-j> ((pumvisible())?("\<C-n>"):("\<C-j>"))
-    " inoremap <expr> <C-k> ((pumvisible())?("\<C-p>"):("\<C-k>"))
-
     " Line numbrer toggle
     nnoremap <F3> :set nonumber! norelativenumber!<CR>
 " }
@@ -326,11 +308,6 @@
             \ },
             \ 'fallback': s:ctrlp_fallback
         \ }
-
-        " let g:ctrlp_prompt_mappings = {
-        "     \ 'AcceptSelection("t")': ['<c-l>'],
-        "     \ 'PrtCurRight()':        ['<c-t>', '<right>'],
-        " \ }
      "
      
      " Airline {
@@ -351,14 +328,6 @@
         let g:airline_section_z='%p%% %l:%L'
 
         let g:airline_detect_modified=0
-
-        let g:airline_theme_patch_func='AirlineThemePatch'
-        function! AirlineThemePatch(palette)
-            if g:airline_theme=='luna'
-                let color=a:palette.tabline['airline_tab']
-                let color[2]=251
-            endif
-        endfunction
      " }
 
      " Neocomplcache {
@@ -380,8 +349,6 @@
         inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
         function! s:my_cr_function()
             return neocomplcache#smart_close_popup() . "\<CR>"
-            " For no inserting <CR> key.
-            "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
         endfunction
      " }
 
