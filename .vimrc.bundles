@@ -17,11 +17,9 @@
         Bundle 'gmarik/vundle'
         Bundle 'MarcWeber/vim-addon-mw-utils'
         Bundle 'tomtom/tlib_vim'
-        if executable('ack-grep')
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+        if executable('ag')
             Bundle 'mileszs/ack.vim'
-        elseif executable('ack')
-            Bundle 'mileszs/ack.vim'
+            let g:ackprg='ag --nogroup --nocolor --column --smart-case'
         endif
 
     " General {
@@ -29,11 +27,12 @@
         Bundle 'altercation/vim-colors-solarized'
         Bundle 'bling/vim-airline'
         Bundle 'tpope/vim-surround'
-        Bundle 'guns/xterm-color-table.vim'
+        Bundle 'tpope/vim-repeat'
+        Bundle 'jiangmiao/auto-pairs'
         Bundle 'vim-scripts/sessionman.vim'
-        Bundle 'L9'
-        Bundle 'FuzzyFinder'
         Bundle 'kien/ctrlp.vim'
+        Bundle 'tacahiroy/ctrlp-funky'
+        Bundle 'terryma/vim-multiple-cursors'
         Bundle 'matchit.zip'
         Bundle 'bufexplorer.zip'
         Bundle 'Lokaltog/vim-easymotion'
@@ -43,14 +42,15 @@
     " General Programming {
         Bundle 'scrooloose/nerdcommenter'
         Bundle 'godlygeek/tabular'
+        Bundle 'luochen1990/rainbow'
         Bundle 'tpope/vim-fugitive'
-        Bundle 'zhaolong/vim-dict'
-        Bundle 'Shougo/neocomplcache.vim'
-        Bundle 'Shougo/neosnippet'
-        Bundle 'zhaolong/vim-snippets'
         if executable('ctags')
             Bundle 'majutsushi/tagbar'
         endif
+    " }
+
+    " Misc {
+        Bundle 'evanmiller/nginx-vim-syntax'
     " }
 " }
 

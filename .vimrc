@@ -203,175 +203,143 @@
         set tags=./tags;/,~/.vimtags
     " }
 
-    " NerdTree {
-        map <C-n> :NERDTreeToggle<CR>
-        " map <C-n> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-        " map <leader>e :NERDTreeFind<CR>
-        nmap <leader>nt :NERDTreeFind<CR>
+    " AutoPairs {
+        let g:AutoPairsShortcutToggle='<leader>ap'
+    " }
 
-        let NERDTreeShowBookmarks=1
-        let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.idea']
-        let NERDTreeChDirMode=0
-        let NERDTreeDirArrows=1
-        let NERDTreeQuitOnOpen=1
-        let NERDTreeMouseMode=2
-        let NERDTreeShowHidden=1
-        let NERDTreeShowLineNumbers=1
-        let g:nerdtree_tabs_open_on_gui_startup=0
+    " NerdTree {
+        if isdirectory(expand("~/.vim/bundle/nerdtree"))
+            nmap <leader>nt :NERDTreeToggle<CR>
+            nmap <leader>nf :NERDTreeFind<CR>
+
+            let NERDTreeShowBookmarks=1
+            let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.idea']
+            let NERDTreeChDirMode=0
+            let NERDTreeDirArrows=1
+            let NERDTreeQuitOnOpen=1
+            let NERDTreeMouseMode=2
+            let NERDTreeShowHidden=1
+            let NERDTreeShowLineNumbers=1
+            let g:nerdtree_tabs_open_on_gui_startup=0
+        endif
     " }
 
     " Tabularize {
-        nmap <Leader>a= :Tabularize /=<CR>
-        vmap <Leader>a= :Tabularize /=<CR>
-        nmap <Leader>a: :Tabularize /:<CR>
-        vmap <Leader>a: :Tabularize /:<CR>
-        nmap <Leader>a:: :Tabularize /:\zs<CR>
-        vmap <Leader>a:: :Tabularize /:\zs<CR>
-        nmap <Leader>a, :Tabularize /,<CR>
-        vmap <Leader>a, :Tabularize /,<CR>
-        nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-        vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        if isdirectory(expand("~/.vim/bundle/tabular"))
+            nmap <Leader>a= :Tabularize /=<CR>
+            vmap <Leader>a= :Tabularize /=<CR>
+            nmap <Leader>a: :Tabularize /:<CR>
+            vmap <Leader>a: :Tabularize /:<CR>
+            nmap <Leader>a:: :Tabularize /:\zs<CR>
+            vmap <Leader>a:: :Tabularize /:\zs<CR>
+            nmap <Leader>a, :Tabularize /,<CR>
+            vmap <Leader>a, :Tabularize /,<CR>
+            nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+            vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+        endif
      " }
 
      " Session List {
         set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-        nmap <leader>sl :SessionList<CR>
-        nmap <leader>ss :SessionSave<CR>
+        if isdirectory(expand("~/.vim/bundle/sessionman.vim/"))
+            nmap <leader>sl :SessionList<CR>
+            nmap <leader>ss :SessionSave<CR>
+            nmap <leader>sc :SessionClose<CR>
+        endif
      " }
 
      " TagBar {
-        nnoremap <silent> <leader>tt :TagbarToggle<CR>
-        exec "hi! TagbarHighlight ctermbg=232"
-        let g:tagbar_autofocus=1
-        let g:tagbar_show_linenumbers=1
-        let g:tagbar_iconchars=['+', '-']
-        let g:tagbar_autoclose=1
-        let g:tagbar_type_php = {
-            \ 'ctagstype' : 'php',
-            \ 'kinds'     : [
-                \ 'i:interfaces',
-                \ 'c:classes',
-                \ 'd:constant definitions',
-                \ 'f:functions',
-                \ 'j:javascript functions:1'
-            \ ]
-        \ }
-     "}
+        if isdirectory(expand("~/.vim/bundle/tagbar/"))
+            nnoremap <silent> <leader>tt :TagbarToggle<CR>
+            exec "hi! TagbarHighlight ctermbg=232"
+            let g:tagbar_autofocus=1
+            let g:tagbar_show_linenumbers=1
+            let g:tagbar_iconchars=['+', '-']
+            let g:tagbar_autoclose=1
+            let g:tagbar_type_php = {
+                \ 'ctagstype' : 'php',
+                \ 'kinds'     : [
+                    \ 'i:interfaces',
+                    \ 'c:classes',
+                    \ 'd:constant definitions',
+                    \ 'f:functions',
+                    \ 'j:javascript functions:1'
+                \ ]
+            \ }
+        endif
+     " }
+
+     " Rainbow {
+        if isdirectory(expand("~/.vim/bundle/rainbow/"))
+            let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+        endif
+     " }
 
      " BufExplorer {
-        let g:bufExplorerSortBy='fullpath'
-        let g:bufExplorerShowRelativePath=0
-     " }
-
-     " Fuzzyfinder {
-        noremap <silent> <C-\> :FufTagWithCursorWord!<CR>
-
-        nnoremap <silent> <leader>fb :FufBuffer<CR>
-        nnoremap <silent> <leader>ft :FufTag<CR>
-        nnoremap <silent> <leader>f, :FufBufferTag<CR>
-        nnoremap <silent> <leader>f. :FufBufferTagAll<CR>
-
-        let g:fuf_keyOpenSplit=''
-        let g:fuf_keyOpenVsplit=''
-        let g:fuf_enumeratingLimit=20
-        if OSX()
-            let g:fuf_buffertag_ctagsPath='/usr/local/bin/ctags'
+        if isdirectory(expand("~/.vim/bundle/bufexplorer.zip/"))
+            let g:bufExplorerSortBy='fullpath'
+            let g:bufExplorerShowRelativePath=0
         endif
-
-        " No php variable
-        let g:fuf_buffertag__php='--language-force=php --php-types=cdf'
      " }
-     
+
      " Ctrlp {
-        let g:ctrlp_working_path_mode='ra'
-        let g:ctrlp_root_markers = ['.ctrlp', '.git']
-        let g:ctrlp_max_files=0
-        let g:ctrlp_lazy_update=1
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+        if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+            let g:ctrlp_working_path_mode='ra'
+            let g:ctrlp_root_markers=['.ctrlp', '.git']
+            let g:ctrlp_max_files=0
+            let g:ctrlp_lazy_update=1
+            let g:ctrlp_custom_ignore={
+                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-        " On Windows use "dir" as fallback command.
-        if WINDOWS()
-            let s:ctrlp_fallback='dir %s /-n /b /s /a-d'
-        elseif executable('ag')
-            let s:ctrlp_fallback='ag %s --nocolor -l -g ""'
-        elseif executable('ack')
-            let s:ctrlp_fallback='ack %s --nocolor -f'
-        else
-            let s:ctrlp_fallback='find %s -type f'
+            " On Windows use "dir" as fallback command.
+            if WINDOWS()
+                let s:ctrlp_fallback='dir %s /-n /b /s /a-d'
+            elseif executable('ag')
+                let s:ctrlp_fallback='ag %s --nocolor -l -g ""'
+            elseif executable('ack')
+                let s:ctrlp_fallback='ack %s --nocolor -f'
+            else
+                let s:ctrlp_fallback='find %s -type f'
+            endif
+            let g:ctrlp_user_command={
+                \ 'types': {
+                    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                \ },
+                \ 'fallback': s:ctrlp_fallback
+            \ }
+            if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+                " CtrlP extensions
+                let g:ctrlp_extensions=['funky']
+                "funky
+                nnoremap <Leader>fu :CtrlPFunky<Cr>
+            endif
         endif
-        let g:ctrlp_user_command={
-            \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            \ },
-            \ 'fallback': s:ctrlp_fallback
-        \ }
-     "
+     " }
      
      " Airline {
-        let g:airline_theme='solarized'
+        if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+            let g:airline_theme='solarized'
 
-        let g:airline_left_sep=''
-        let g:airline_right_sep=''
+            let g:airline_left_sep=''
+            let g:airline_right_sep=''
 
-        let g:airline#extensions#tabline#enabled=1
-        let g:airline#extensions#tabline#tab_nr_type=1
-        let g:airline#extensions#tabline#left_sep=''
-        let g:airline#extensions#tabline#left_alt_sep=''
-        let g:airline#extensions#tabline#fnamemod=':t'
-        let g:airline#extensions#tabline#show_buffers=0
+            let g:airline#extensions#tabline#enabled=1
+            let g:airline#extensions#tabline#tab_nr_type=1
+            let g:airline#extensions#tabline#left_sep=''
+            let g:airline#extensions#tabline#left_alt_sep=''
+            let g:airline#extensions#tabline#fnamemod=':t'
+            let g:airline#extensions#tabline#show_buffers=0
 
-        let g:airline_section_c='%f%m'
-        let g:airline_section_warning=''
-        let g:airline_section_z='%p%% %l:%L'
+            let g:airline_section_c='%f%m'
+            let g:airline_section_warning=''
+            let g:airline_section_z='%p%% %l:%L'
 
-        let g:airline_detect_modified=0
-     " }
-
-     " Neocomplcache {
-        let g:neocomplcache_enable_at_startup = 1
-        let g:neocomplcache_max_list = 10
-
-        " Define dictionary.
-        let g:neocomplcache_dictionary_filetype_lists = {
-        \   'default'   : '',
-        \   'php'       : '~/.vim/bundle/vim-dict/dict/php.dic'
-        \ }
-
-        " Plugin key-mappings.
-        inoremap <expr><C-g>     neocomplcache#undo_completion()
-        inoremap <expr><Space>   pumvisible() ? neocomplcache#close_popup()."\<SPACE>" : "\<Space>"
-
-        " Recommended key-mappings.
-        " <CR>: close popup and save indent.
-        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-        function! s:my_cr_function()
-            return neocomplcache#smart_close_popup() . "\<CR>"
-        endfunction
-     " }
-
-     " Neosnippet {
-     
-        " Tell Neosnippet about the other snippets.
-        let g:neosnippet#snippets_directory = '~/.vim/bundle/vim-snippets/snippets'
-
-        " Do not load all runtime snippets.
-        let g:neosnippet#disable_runtime_snippets = {
-        \   '_' : 1,
-        \ }
-
-        " Plugin key-mappings.
-        imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-        xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-        " For snippet_complete marker.
-        if has('conceal')
-          set conceallevel=2 concealcursor=i
+            let g:airline_detect_modified=0
         endif
      " }
+
 " }
 
 " GUI Settings {
