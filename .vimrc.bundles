@@ -26,6 +26,7 @@
         Bundle 'scrooloose/nerdtree'
         Bundle 'altercation/vim-colors-solarized'
         Bundle 'bling/vim-airline'
+        Bundle 'vim-airline/vim-airline-themes'
         Bundle 'tpope/vim-surround'
         Bundle 'tpope/vim-repeat'
         Bundle 'jiangmiao/auto-pairs'
@@ -50,7 +51,6 @@
     " }
 
     " Misc {
-        Bundle 'evanmiller/nginx-vim-syntax'
     " }
 " }
 
